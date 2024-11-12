@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home Automation</title>
+    <style>
+        body {
+            background-color: red;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        marquee {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+        .services, .order, .login, .register {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid white;
+            border-radius: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    <a href="form page.html">FORM</a>
+    <a href="installation page.html">INSTALLATION</a>
+    <a href="contact page.html">CONTACT US</a>
+    
+</head>
+<body>
+    <marquee>Welcome to Smart Home</marquee>
+
+    <div class="login">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="loginUsername" placeholder="Username" required><br><br>
+            <input type="password" id="loginPassword" placeholder="Password" required><br><br>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div class="register">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <input type="text" id="registerUsername" placeholder="Username" required><br><br>
+            <input type="password" id="registerPassword" placeholder="Password" required><br><br>
+            <button type="submit">Create an Account</button>
+        </form>
+    </div>
+
+    <div class="services hidden">
+        <h2>Services Provided</h2>
+        <ul>
+            <li>Lighting Control</li>
+            <li>Temperature Control</li>
+            <li>Security System</li>
+            <li>Entertainment System</li>
+            <li>Energy Management</li>
+        </ul>
+    </div>
+    <div class="order hidden">
+        <h2>How to Order for the Service</h2>
+        <p>To order any of our services, please contact us at:</p>
+        <p>Email: support@smarthome.com</p>
+        <p>Phone: +123 456 7890</p>
+    </div>
+
+    <script>
+        const users = [];
+
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('registerUsername').value;
+            const password = document.getElementById('registerPassword').value;
+            users.push({ username, password });
+            alert('Registration successful!');
+            window.location.href = 'services.html'; // Redirect after successful registration
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            const user = users.find(user => user.username === username && user.password === password);
+            if (user) {
+                document.querySelector('.login').classList.add('hidden');
+                document.querySelector('.register').classList.add('hidden');
+                document.querySelector('.services').classList.remove('hidden');
+                document.querySelector('.order').classList.remove('hidden');
+            } else {
+                alert('Invalid username or password');
+            }
+        });
+    </script>
+</body>
+</html>
